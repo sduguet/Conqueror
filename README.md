@@ -5,7 +5,7 @@
 **Conqueror est un clicker où chaque clic vous rapproche de la domination intergalactique.**  
 
 Construisez votre empire, capturez des planètes et faites prospérer vos colonies aux quatre coins de l’univers.
-Améliorez vos vaisseaux, débloquez de nouvelles technologies et automatisez votre progression pour transformer votre modeste base en une puissance interstellaire.
+Améliorez vos vaisseaux, débloquez de nouvelles technologies et automatisez votre progression pour transformer votre modeste base en une puissance interstellaire.  
 <ins>Votre objectif ultime</ins> : étendre votre domination à toute la galaxie et devenir le maître incontesté de l’espace.
 
 <br>
