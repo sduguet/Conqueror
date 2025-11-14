@@ -1,5 +1,5 @@
 # 🚀Conqueror
-#### Thèmes : `🖱️Clicker` `🌌 Conquête spatiale` `💰Ressources` `📈Expansion`
+#### Thèmes : `🖱️Clicker` `🌌 Conquête spatiale` `💰Ressources` `📈Expansion` `🧑‍🚀Colonisation`
 <br>
 
 **Conqueror est un clicker où chaque clic vous rapproche de la domination intergalactique.**  

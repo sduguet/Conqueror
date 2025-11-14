@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="./assets/scss/reset.css" rel="stylesheet">
+    <link href="./assets/scss/styles.css" rel="stylesheet">
+    <link href="./assets/scss/switch.css" rel="stylesheet">
+    <title>Space Conqueror</title>
+    <link rel="icon" type="image/x-icon" href="./assets/img/ship.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+
+<body onmousedown="return false" onselectstart="return false" data-progress="0">
+    <header class="head">
+        <div class="item">
+            <p class="item__txt">
+                <span class="wood__nb"></span>/<span class="wood__max"></span>
+            </p>
+            <img class="item__img" src="./assets/img/wood.png" alt="">
+        </div>
+        <div class="item item--money" data-level="1">
+            <p class="money__nb"></p>
+            <img class="item__img" src="./assets/img/money.png" alt="">
+        </div>
+        <div class="item" data-level="2">
+            <p class="item__txt">
+                <span class="iron__nb"></span>/<span class="iron__max"></span>
+            </p>
+            <img class="item__img" src="./assets/img/iron.png" alt="">
+        </div>
+        <div class="item" data-level="3">
+            <p class="item__txt">
+                <span class="sonde__nb"></span>/<span class="sonde__max"></span>
+            </p>
+            <img class="item__img" src="./assets/img/sonde.png" alt="">
+        </div>
+        <div class="group">
+            <div class="item item--planetDiscover" data-level="3">
+                <span class="planetDiscover__nb"></span>
+                <img class="item__img" src="./assets/img/planetDiscover.png" alt="">
+            </div>
+            <div class="item item--planetColonised" data-level="4">
+                <span class="planetColonised__nb"></span>
+                <img class="item__img" src="./assets/img/planetColonised.png" alt="">
+
+                <div class="planetColonised-info">
+                    <div class="planetColonised-info__ele">
+                        Nombre de colons pour coloniser une planète :
+                        <span class="planetColonised__colons"></span>
+                        <img class="planetColonised-info__img" src="./assets/img/bishop.png" alt="">/
+                        <img class="planetColonised-info__img" src="./assets/img/warrior.png" alt="">
+                    </div>
+                    <div class="planetColonised-info__ele">
+                        <span class="planetColonised-info__title">Colonisation en cours :</span>
+                        <div class="colonized">
+                            <div class="colonized--b"></div>
+                            <div class="colonized--w"></div>
+                        </div>
+                        <div class="legend">
+                            <img class="planetColonised-info__img" src="./assets/img/bishop.png" alt=""> <span class="nbBishopFired"></span>
+                            /
+                            <span class="nbWarriorFired"></span> <img class="planetColonised-info__img" src="./assets/img/warrior.png" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="group" data-level="4">
+            <div class="item">
+                <span class="bishop__nb"></span>
+                <img class="item__img" src="./assets/img/bishop.png" alt="">
+            </div>
+            <div class="item">
+                <span class="warrior__nb"></span>
+                <img class="item__img" src="./assets/img/warrior.png" alt="">
+            </div>
+        </div>
+        <div class="item" data-level="4">
+            <div class="ship__nb">
+                <div class="ship__nb--b"></div>
+                <div class="ship__nb--w"></div>
+            </div>
+            <img class="item__img" src="./assets/img/ship.png" alt="">
+
+            <div class="shipinfo">
+                <div class="shipinfo__ele shipB">
+                    Bishop Ship : <span class="shipB__nb"></span>
+                </div>
+                <div class="shipinfo__ele shipW">
+                    Warrior Ship : <span class="shipW__nb"></span>
+                </div>
+                <div class="shipinfo__ele shipinfo__ele--total">
+                    Total :<span class="shipB__total"></span> / <span class="shipB__max"></span>
+                </div>
+            </div>
+        </div>
+        <div class="item item--science" data-level="5">
+            <p class="item__txt">
+                <span class="science__nb"></span></span>
+            </p>
+            <img class="item__img" src="./assets/img/science.png" alt="">
+
+            <div class="science-info">
+                <div class="science-info__ele">
+                    Prod :
+                    <span class="science__prod"></span>
+                    <img class="science-info__img" src="./assets/img/science.png" alt="">/s
+                </div>
+                <div class="science-info__ele">
+                    <div class="science-info__graph">
+                        <div class="science-info__graph--current" data-a='pkeb*rj_kbàuiésd"1lèhz12'></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="item item--energy" data-level="6">
+            <p class="item__txt">
+                <span class="energy__nb"></span>/<span class="energy__max"></span>
+            </p>
+            <img class="item__img" src="./assets/img/energy.png" alt="">
+        </div>
+        <div class="item item--faille hide">
+            <p class="item__txt">
+            </p>
+        </div>
+    </header>
+
+    <main class="main">
+        <aside class="sidebar">
+            <ul class="sidebar-list">
+                <li class="sidebar-list__ele sidebar-list__ele--active" data-target="ressources">
+                    Ressources
+                </li>
+                <li class="sidebar-list__ele" data-target="exploration" data-level="3">
+                    Exploration Spatial
+                </li>
+                <li class="sidebar-list__ele" data-target="colonisation" data-level="4">
+                    Colonisation Spatial
+                </li>
+                <li class="sidebar-list__ele" data-target="conseil" data-level="5">
+                    Conseil Scientifique
+                </li>
+                <li class="sidebar-list__ele" data-target="quantique" data-level="6">
+                    Monde quantique
+                </li>
+            </ul>
+        </aside>
+
+        <section class="container">
+            <div class="bg">
+                <img class="bg__ressources" src="./assets/img/forest1.png" alt="">
+                <canvas class="bg__exploration hide" id="explorationCanvas"></canvas>
+                <canvas class="bg__colonisation hide" id="colonisationCanvas"></canvas>
+                <div class="bg__conseil hide"></div>
+                <div class="bg__quantique hide"></div>
+            </div>
+
+            <div class="interact" data-b="68ior85hlk8sd65n988+kznz">
+                <ul class="interact-list interact-list--ressources">
+                    <li class="interact-list__ele" data-level="1">
+                        <article class="card card--bucheron">
+                            <p class="card__title">Bûcheron</p>
+                            <img class="card__img" src="./assets/img/bucheron.png" alt="">
+
+                            <button class="btn card__purchase disabled" role="button">
+                                <span class="btn-shadow"></span>
+                                <span class="btn-edge"></span>
+                                <span class="btn-front">
+                                    <span class="btn__txt">Acheter</span>
+                                    <span class="btn__txt btn__txt--hovered card__price"></span>
+                                </span>
+                            </button>
+
+                            <div class="info">
+                                <span class="info__head">i</span>
+
+                                <div class="info__content">
+                                    <p class="info__txt">Bûcherons : <span class="card__nb"></span></p>
+                                    <p class="info__txt">Prod/Bûcheron : <span class="card__prod1"></span></p>
+                                    <p class="info__txt">Prod total : <span class="card__prod"></span></p>
+                                </div>
+                            </div>
+                        </article>
+                    </li>
+                    <li class="interact-list__ele" data-level="1">
+                        <article class="card card--grange">
+                            <p class="card__title">Grange</p>
+                            <img class="card__img" src="./assets/img/grange.png" alt="">
+                            <button class="btn card__purchase disabled" role="button">
+                                <span class="btn-shadow"></span>
+                                <span class="btn-edge"></span>
+                                <span class="btn-front">
+                                    <span class="btn__txt">Acheter</span>
+                                    <span class="btn__txt btn__txt--hovered card__price"></span>
+                                </span>
+                            </button>
+
+                            <div class="info">
+                                <span class="info__head">i</span>
+
+                                <div class="info__content">
+                                    <p class="info__txt">Granges : <span class="card__nb"></span></p>
+                                    <p class="info__txt">Espace : <span class="card__space"></span></p>
+                                </div>
+                            </div>
+                        </article>
+                    </li>
+                    <li class="interact-list__ele" data-level="2">
+                        <article class="card card--mine">
+                            <p class="card__title">Mine</p>
+                            <img class="card__img" src="./assets/img/mine.png" alt="">
+                            <button class="btn card__purchase disabled" role="button">
+                                <span class="btn-shadow"></span>
+                                <span class="btn-edge"></span>
+                                <span class="btn-front">
+                                    <span class="btn__txt">Acheter</span>
+                                    <span class="btn__txt btn__txt--hovered card__price"></span>
+                                </span>
+                            </button>
+
+                            <div class="info">
+                                <span class="info__head">i</span>
+
+                                <div class="info__content">
+                                    <p class="info__txt">Mines : <span class="card__nb"></span></p>
+                                    <p class="info__txt">Prod/Mine : <span class="card__prod1"></span></p>
+                                    <p class="info__txt">Prod total : <span class="card__prod"></span></p>
+                                </div>
+                            </div>
+                        </article>
+                    </li>
+                    <li class="interact-list__ele" data-level="2">
+                        <article class="card card--chambre">
+                            <p class="card__title">Chambre des métaux</p>
+                            <img class="card__img" src="./assets/img/chambre.png" alt="">
+                            <button class="btn card__purchase disabled" role="button">
+                                <span class="btn-shadow"></span>
+                                <span class="btn-edge"></span>
+                                <span class="btn-front">
+                                    <span class="btn__txt">Acheter</span>
+                                    <span class="btn__txt btn__txt--hovered card__price"></span>
+                                </span>
+                            </button>
+
+                            <div class="info">
+                                <span class="info__head">i</span>
+
+                                <div class="info__content">
+                                    <p class="info__txt">Chambres des métaux : <span class="card__nb"></span></p>
+                                    <p class="info__txt">Espace : <span class="card__space"></span></p>
+                                </div>
+                            </div>
+                        </article>
+                    </li>
+                </ul>
+                <ul class="interact-list interact-list--exploration hide">
+                    <li class="interact-list__ele">
+                        <article class="card card--sonde">
+                            <p class="card__title">Sonde</p>
+                            <img class="card__img" src="./assets/img/sonde.png" alt="">
+                            <button class="btn card__purchase disabled" role="button">
+                                <span class="btn-shadow"></span>
+                                <span class="btn-edge"></span>
+                                <span class="btn-front">
+                                    <span class="btn__txt">Acheter</span>
+                                    <span class="btn__txt btn__txt--hovered card__price"></span>
+                                </span>
+                            </button>
+
+                            <div class="info">
+                                <span class="info__head">i</span>
+
+                                <div class="info__content">
+                                    <p class="info__txt">Exploration :</p>
+                                    <p class="info__txt">pour 10 <img src="./assets/img/sonde.png" alt=""> lancées, découvre</p>
+                                    <p class="info__txt info__txt--minigap">entre <span class="card__proba"></span> et 10 <img class="info__txt--img" src="./assets/img/planetDiscover2.png"></p>
+                                    <p class="info__txt info__txt--minigap">Durée : <span class="card__duree"></span>s</p>
+                                </div>
+                            </div>
+                        </article>
+                    </li>
+                    <li class="interact-list__ele"> 
+                        <article class="card card--labo">
+                            <p class="card__title">Laboratoire</p>
+                            <img class="card__img" src="./assets/img/labo.png" alt="">
+                            <button class="btn card__purchase disabled" role="button">
+                                <span class="btn-shadow"></span>
+                                <span class="btn-edge"></span>
+                                <span class="btn-front">
+                                    <span class="btn__txt">Acheter</span>
+                                    <span class="btn__txt btn__txt--hovered card__price"></span>
+                                </span>
+                            </button>
+
+                            <div class="info">
+                                <span class="info__head">i</span>
+
+                                <div class="info__content">
+                                    <p class="info__txt">Laboratoires : <span class="card__nb"></span></p>
+                                    <p class="info__txt">Prod/Laboratoire : <span class="card__prod1"></span></p>
+                                    <p class="info__txt">Prod total : <span class="card__prod"></span></p>
+                                </div>
+                            </div>
+                        </article>
+                    </li>
+                    <li class="interact-list__ele">
+                        <article class="card card--entrepot">
+                            <p class="card__title">Entrepot</p>
+                            <img class="card__img" src="./assets/img/entrepot.png" alt="">
+                            <button class="btn card__purchase disabled" role="button">
+                                <span class="btn-shadow"></span>
+                                <span class="btn-edge"></span>
+                                <span class="btn-front">
+                                    <span class="btn__txt">Acheter</span>
+                                    <span class="btn__txt btn__txt--hovered card__price"></span>
+                                </span>
+                            </button>
+
+                            <div class="info">
+                                <span class="info__head">i</span>
+
+                                <div class="info__content">
+                                    <p class="info__txt">Entrepots : <span class="card__nb"></span></p>
+                                    <p class="info__txt">Espace : <span class="card__space"></span></p>
+                                </div>
+                            </div>
+                        </article>
+                    </li>
+                </ul>
+                <ul class="interact-list interact-list--colonisation hide">
+                    <li class="interact-list__ele">
+                        <article class="card card--eglise">
+                            <p class="card__title">Église</p>
+                            <img class="card__img" src="./assets/img/eglise.png" alt="">
+                            <button class="btn card__purchase disabled" role="button">
+                                <span class="btn-shadow"></span>
+                                <span class="btn-edge"></span>
+                                <span class="btn-front">
+                                    <span class="btn__txt">Acheter</span>
+                                    <span class="btn__txt btn__txt--hovered card__price"></span>
+                                </span>
+                            </button>
+
+                            <div class="info">
+                                <span class="info__head">i</span>
+
+                                <div class="info__content">
+                                    <p class="info__txt">Églises : <span class="card__nb"></span></p>
+                                    <p class="info__txt">Prod/Église : <span class="card__prod1"></span></p>
+                                    <p class="info__txt">Prod total : <span class="card__prod"></span></p>
+                                </div>
+                            </div>
+                        </article>
+                    </li>
+                    <li class="interact-list__ele">
+                        <article class="card card--caserne">
+                            <p class="card__title">Caserne</p>
+                            <img class="card__img" src="./assets/img/caserne.png" alt="">
+                            <button class="btn card__purchase disabled" role="button">
+                                <span class="btn-shadow"></span>
+                                <span class="btn-edge"></span>
+                                <span class="btn-front">
+                                    <span class="btn__txt">Acheter</span>
+                                    <span class="btn__txt btn__txt--hovered card__price"></span>
+                                </span>
+                            </button>
+
+                            <div class="info">
+                                <span class="info__head">i</span>
+
+                                <div class="info__content">
+                                    <p class="info__txt">Casernes : <span class="card__nb"></span></p>
+                                    <p class="info__txt">Prod/Caserne : <span class="card__prod1"></span></p>
+                                    <p class="info__txt">Prod total : <span class="card__prod"></span></p>
+                                </div>
+                            </div>
+                        </article>
+                    </li>
+                    <li class="interact-list__ele">
+                        <article class="card card--ship">
+                            <p class="card__title">Ship</p>
+                            <img class="card__img" src="./assets/img/ship.png" alt="">
+                            <div class="card--shipB">
+                                <button class="btn card__purchase disabled" role="button">
+                                    <span class="btn-shadow"></span>
+                                    <span class="btn-edge"></span>
+                                    <span class="btn-front">
+                                        <span class="btn__txt">Bishop Ship</span>
+                                        <span class="btn__txt btn__txt--hovered card__price"></span>
+                                    </span>
+                                </button>
+                            </div>
+                            <div class="card--shipW">
+                                <button class="btn card__purchase disabled" role="button">
+                                    <span class="btn-shadow"></span>
+                                    <span class="btn-edge"></span>
+                                    <span class="btn-front">
+                                        <span class="btn__txt">Warrior Ship</span>
+                                        <span class="btn__txt btn__txt--hovered card__price"></span>
+                                    </span>
+                                </button>
+                            </div>
+
+                            <div class="info">
+                                <span class="info__head">i</span>
+
+                                <div class="info__content">
+                                    <p class="info__txt info__txt--minigap">Capacité : <span class="card__capacite"></span> <span class="info__img"><img src="./assets/img/warrior.png" alt=""></span>/<span class="info__img"><img src="./assets/img/bishop.png" alt=""></span></p>
+                                    <p class="info__txt info__txt--minigap">Durée : <span class="card__duree"></span>s</p>
+                                    <p class="info__txt"><br> Colonisation :</p>
+                                    <p class="info__txt info__txt--pad">• <span class="card__gainB"></span></p>
+                                    <p class="info__txt info__txt--pad">•<span class="card__gainW"></span></p>
+                                </div>
+                            </div>
+                        </article>
+                    </li>
+                    <li class="interact-list__ele">
+                        <article class="card card--dock">
+                            <p class="card__title">Dock d'assemblage</p>
+                            <img class="card__img" src="./assets/img/dock.png" alt="">
+                            
+                            <label class="switch">
+                                <input class="switch__input" type="checkbox" role="switch" name="dark" />
+                    
+                                <span class="switch__inner"></span>
+                                <span class="switch__inner-icons">
+                                    <img class="switch__icon" src="./assets/img/bishop.png" alt="">
+                                    <img class="switch__icon" src="./assets/img/warrior.png" alt="">
+                                </span>
+                            </label>
+
+                            <button class="btn card__purchase disabled" role="button">
+                                <span class="btn-shadow"></span>
+                                <span class="btn-edge"></span>
+                                <span class="btn-front">
+                                    <span class="btn__txt">Acheter</span>
+                                    <span class="btn__txt btn__txt--hovered card__price"></span>
+                                </span>
+                            </button>
+
+                            <div class="info">
+                                <span class="info__head">i</span>
+
+                                <div class="info__content">
+                                    <p class="info__txt">Docks : <span class="card__nb"></span></p>
+                                    <p class="info__txt">Prod/Dock : <span class="card__prod1"></span></p>
+                                    <p class="info__txt">Prod total : <span class="card__prod"></span></p>
+                                </div>
+                            </div>
+                        </article>
+                    </li>
+                    <li class="interact-list__ele">
+                        <article class="card card--hangar">
+                            <p class="card__title">Hangar</p>
+                            <img class="card__img" src="./assets/img/hangar.png" alt="">
+                            <button class="btn card__purchase disabled" role="button">
+                                <span class="btn-shadow"></span>
+                                <span class="btn-edge"></span>
+                                <span class="btn-front">
+                                    <span class="btn__txt">Acheter</span>
+                                    <span class="btn__txt btn__txt--hovered card__price"></span>
+                                </span>
+                            </button>
+
+                            <div class="info">
+                                <span class="info__head">i</span>
+
+                                <div class="info__content">
+                                    <p class="info__txt">Hangars : <span class="card__nb"></span></p>
+                                    <p class="info__txt">Espace : <span class="card__space"></span></p>
+                                </div>
+                            </div>
+                        </article>
+                    </li>
+                    <li class="interact-list__ele hide">
+                        <article class="card card--conseil">
+                            <p class="card__title">Conseil</p>
+                            <img class="card__img" src="./assets/img/science.png" alt="">
+                            <span class="card__price"></span>
+                            <span class="card__nb"></span>
+                            <span class="card__prod"></span>
+                            <span class="card__prod1"></span>
+
+                            <button class="btn card__purchase disabled" role="button">
+                            </button>
+                        </article>
+                    </li>
+                </ul>
+                <ul class="interact-list interact-list--conseil hide">
+                    <ul class="interact-head">
+                        <li class="interact-head__menu interact-head__menu--active" data-conseil="ressources">
+                            Ressources
+                        </li>
+                        <li class="interact-head__menu" data-conseil="exploration">
+                            Exploration
+                        </li>
+                        <li class="interact-head__menu" data-conseil="colonisation">
+                            Colonisation
+                        </li>
+                    </ul>
+
+                    <ul class="interact-body">
+                        <li class="interact-body__content interact-body__content--ressources">
+                            <ul class="upgrade">
+                                <li class="upgrade__card upgrade__card--bucheron">
+                                    <p class="upgrade__card__title">Bûcheron</p>
+                                    <img class="upgrade__card__img" src="./assets/img/bucheron.png" alt="">
+
+                                    <button class="btn upgrade__card__purchase disabled" role="button">
+                                        <span class="btn-shadow"></span>
+                                        <span class="btn-edge"></span>
+                                        <span class="btn-front">
+                                            <span class="btn__txt">
+                                                Prod : <span class="upgrade__card__data"></span>
+                                                <img class="upgrade__card__picto" src="./assets/img/wood.png" alt="">/s
+                                            </span>
+                                            <span class="btn__txt btn__txt--hovered"><span class="upgrade__card__price"></span> <img class="upgrade__card__picto"  src="./assets/img/science.png" alt=""></span>
+                                        </span>
+                                    </button>
+
+                                    <div class="info">
+                                        <span class="info__head">i</span>
+        
+                                        <div class="info__content">
+                                            <p class="info__txt info__txt--minigap">
+                                                Prod :
+                                                <span class="upgrade__card__old"></span>
+                                                <img class="upgrade__card__picto" src="./assets/img/wood.png" alt="">/s
+                                                ⇒
+                                                <span class="upgrade__card__new"></span>
+                                                <img class="upgrade__card__picto" src="./assets/img/wood.png" alt="">/s
+                                            </p>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="upgrade__card upgrade__card--grange">
+                                    <p class="upgrade__card__title">Grange</p>
+                                    <img class="upgrade__card__img" src="./assets/img/grange.png" alt="">
+
+                                    <button class="btn upgrade__card__purchase disabled" role="button">
+                                        <span class="btn-shadow"></span>
+                                        <span class="btn-edge"></span>
+                                        <span class="btn-front">
+                                            <span class="btn__txt">
+                                                Espace : <span class="upgrade__card__data"></span>
+                                                <img class="upgrade__card__picto" src="./assets/img/wood.png" alt=""> max
+                                            </span>
+                                            <span class="btn__txt btn__txt--hovered"><span class="upgrade__card__price"></span> <img class="upgrade__card__picto"  src="./assets/img/science.png" alt=""></span>
+                                        </span>
+                                    </button>
+
+                                    <div class="info">
+                                        <span class="info__head">i</span>
+        
+                                        <div class="info__content">
+                                            <p class="info__txt info__txt--minigap">
+                                                <span class="btn__txt">
+                                                    Espace :
+                                                    <span class="upgrade__card__old"></span>
+                                                    <img class="upgrade__card__picto" src="./assets/img/wood.png" alt=""> max
+                                                    ⇒
+                                                    <span class="upgrade__card__new"></span>
+                                                    <img class="upgrade__card__picto" src="./assets/img/wood.png" alt=""> max
+                                                </span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="upgrade__card upgrade__card--mine">
+                                    <p class="upgrade__card__title">Mine</p>
+                                    <img class="upgrade__card__img" src="./assets/img/mine.png" alt="">
+
+                                    <button class="btn upgrade__card__purchase disabled" role="button">
+                                        <span class="btn-shadow"></span>
+                                        <span class="btn-edge"></span>
+                                        <span class="btn-front">
+                                            <span class="btn__txt">
+                                                Prod : <span class="upgrade__card__data"></span>
+                                                <img class="upgrade__card__picto" src="./assets/img/iron.png" alt="">/s
+                                            </span>
+                                            <span class="btn__txt btn__txt--hovered"><span class="upgrade__card__price"></span> <img class="upgrade__card__picto"  src="./assets/img/science.png" alt=""></span>
+                                        </span>
+                                    </button>
+
+                                    <div class="info">
+                                        <span class="info__head">i</span>
+        
+                                        <div class="info__content">
+                                            <p class="info__txt info__txt--minigap">
+                                                Prod :
+                                                <span class="upgrade__card__old"></span>
+                                                <img class="upgrade__card__picto" src="./assets/img/iron.png" alt="">/s
+                                                ⇒
+                                                <span class="upgrade__card__new"></span>
+                                                <img class="upgrade__card__picto" src="./assets/img/iron.png" alt="">/s
+                                            </p>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="upgrade__card upgrade__card--chambre">
+                                    <p class="upgrade__card__title">Chambre des minerais</p>
+                                    <img class="upgrade__card__img" src="./assets/img/chambre.png" alt="">
+
+                                    <button class="btn upgrade__card__purchase disabled" role="button">
+                                        <span class="btn-shadow"></span>
+                                        <span class="btn-edge"></span>
+                                        <span class="btn-front">
+                                            <span class="btn__txt">
+                                                Espace : <span class="upgrade__card__data"></span>
+                                                <img class="upgrade__card__picto" src="./assets/img/iron.png" alt=""> max
+                                            </span>
+                                            <span class="btn__txt btn__txt--hovered"><span class="upgrade__card__price"></span> <img class="upgrade__card__picto"  src="./assets/img/science.png" alt=""></span>
+                                        </span>
+                                    </button>
+
+                                    <div class="info">
+                                        <span class="info__head">i</span>
+        
+                                        <div class="info__content">
+                                            <p class="info__txt info__txt--minigap">
+                                                <span class="btn__txt">
+                                                    Espace :
+                                                    <span class="upgrade__card__old"></span>
+                                                    <img class="upgrade__card__picto" src="./assets/img/iron.png" alt=""> max
+                                                    ⇒
+                                                    <span class="upgrade__card__new"></span>
+                                                    <img class="upgrade__card__picto" src="./assets/img/iron.png" alt=""> max
+                                                </span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="interact-body__content interact-body__content--exploration">
+                            <ul class="upgrade">
+                                <li class="upgrade__card upgrade__card--sonde">
+                                    <p class="upgrade__card__title">Sonde</p>
+                                    <img class="upgrade__card__img" src="./assets/img/sonde.png" alt="">
+
+                                    <button class="btn upgrade__card__purchase disabled" role="button">
+                                        <span class="btn-shadow"></span>
+                                        <span class="btn-edge"></span>
+                                        <span class="btn-front">
+                                            <span class="btn__txt">
+                                                Durée : <span class="upgrade__card__data"></span>s
+                                            </span>
+                                            <span class="btn__txt btn__txt--hovered"><span class="upgrade__card__price"></span> <img class="upgrade__card__picto"  src="./assets/img/science.png" alt=""></span>
+                                        </span>
+                                    </button>
+                                    <button class="btn upgrade__card__purchase--2 disabled" role="button">
+                                        <span class="btn-shadow"></span>
+                                        <span class="btn-edge"></span>
+                                        <span class="btn-front">
+                                            <span class="btn__txt">
+                                                Scan : <span class="upgrade__card__data--2"></span>%
+                                            </span>
+                                            <span class="btn__txt btn__txt--hovered"><span class="upgrade__card__price--2"></span> <img class="upgrade__card__picto"  src="./assets/img/science.png" alt=""></span>
+                                        </span>
+                                    </button>
+
+                                    <div class="info">
+                                        <span class="info__head">i</span>
+        
+                                        <div class="info__content">
+                                            <p class="info__txt info__txt--minigap">
+                                                <span class="btn__txt">
+                                                    Durée :
+                                                    <span class="upgrade__card__old"></span>s
+                                                    ⇒
+                                                    <span class="upgrade__card__new"></span>s
+                                                </span>
+                                            </p>
+                                            <p class="info__txt info__txt--minigap">
+                                                <span class="btn__txt">
+                                                    Scan :
+                                                    pour 10 <img class="upgrade__card__picto" src="./assets/img/sonde.png" alt=""> lancées : 
+                                                    <span class="upgrade__card__old--2"></span> <img class="upgrade__card__picto upgrade__card__picto--low" src="./assets/img/planetDiscover2.png"> min
+                                                    ⇒
+                                                    <span class="upgrade__card__new--2"></span> <img class="upgrade__card__picto upgrade__card__picto--low" src="./assets/img/planetDiscover2.png"> min
+                                                </span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="upgrade__card upgrade__card--labo">
+                                    <p class="upgrade__card__title">Laboratoire</p>
+                                    <img class="upgrade__card__img" src="./assets/img/labo.png" alt="">
+
+                                    <button class="btn upgrade__card__purchase disabled" role="button">
+                                        <span class="btn-shadow"></span>
+                                        <span class="btn-edge"></span>
+                                        <span class="btn-front">
+                                            <span class="btn__txt">
+                                                Prod : <span class="upgrade__card__data"></span>
+                                                <img class="upgrade__card__picto" src="./assets/img/sonde.png" alt="">/s
+                                            </span>
+                                            <span class="btn__txt btn__txt--hovered"><span class="upgrade__card__price"></span> <img class="upgrade__card__picto"  src="./assets/img/science.png" alt=""></span>
+                                        </span>
+                                    </button>
+
+                                    <div class="info">
+                                        <span class="info__head">i</span>
+        
+                                        <div class="info__content">
+                                            <p class="info__txt info__txt--minigap">
+                                                Prod :
+                                                <span class="upgrade__card__old"></span>
+                                                <img class="upgrade__card__picto" src="./assets/img/sonde.png" alt="">/s
+                                                ⇒
+                                                <span class="upgrade__card__new"></span>
+                                                <img class="upgrade__card__picto" src="./assets/img/sonde.png" alt="">/s
+                                            </p>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="upgrade__card upgrade__card--entrepot">
+                                    <p class="upgrade__card__title">Entrepot</p>
+                                    <img class="upgrade__card__img" src="./assets/img/entrepot.png" alt="">
+
+                                    <button class="btn upgrade__card__purchase disabled" role="button">
+                                        <span class="btn-shadow"></span>
+                                        <span class="btn-edge"></span>
+                                        <span class="btn-front">
+                                            <span class="btn__txt">
+                                                Espace : <span class="upgrade__card__data"></span>
+                                                <img class="upgrade__card__picto" src="./assets/img/sonde.png" alt=""> max
+                                            </span>
+                                            <span class="btn__txt btn__txt--hovered"><span class="upgrade__card__price"></span> <img class="upgrade__card__picto"  src="./assets/img/science.png" alt=""></span>
+                                        </span>
+                                    </button>
+
+                                    <div class="info">
+                                        <span class="info__head">i</span>
+        
+                                        <div class="info__content">
+                                            <p class="info__txt info__txt--minigap">
+                                                <span class="btn__txt">
+                                                    Espace :
+                                                    <span class="upgrade__card__old"></span>
+                                                    <img class="upgrade__card__picto" src="./assets/img/sonde.png" alt=""> max
+                                                    ⇒
+                                                    <span class="upgrade__card__new"></span>
+                                                    <img class="upgrade__card__picto" src="./assets/img/sonde.png" alt=""> max
+                                                </span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="interact-body__content interact-body__content--colonisation">
+                            <ul class="upgrade">
+                                <li class="upgrade__card upgrade__card--eglise">
+                                    <p class="upgrade__card__title">Eglise</p>
+                                    <img class="upgrade__card__img" src="./assets/img/eglise.png" alt="">
+
+                                    <button class="btn upgrade__card__purchase disabled" role="button">
+                                        <span class="btn-shadow"></span>
+                                        <span class="btn-edge"></span>
+                                        <span class="btn-front">
+                                            <span class="btn__txt">
+                                                Prod : <span class="upgrade__card__data"></span>
+                                                <img class="upgrade__card__picto upgrade__card__picto--hardlow" src="./assets/img/bishop.png" alt="">/s
+                                            </span>
+                                            <span class="btn__txt btn__txt--hovered"><span class="upgrade__card__price"></span> <img class="upgrade__card__picto"  src="./assets/img/science.png" alt=""></span>
+                                        </span>
+                                    </button>
+
+                                    <div class="info">
+                                        <span class="info__head">i</span>
+        
+                                        <div class="info__content">
+                                            <p class="info__txt info__txt--minigap">
+                                                Prod :
+                                                <span class="upgrade__card__old"></span>
+                                                <img class="upgrade__card__picto" src="./assets/img/bishop.png" alt="">/s
+                                                ⇒
+                                                <span class="upgrade__card__new"></span>
+                                                <img class="upgrade__card__picto" src="./assets/img/bishop.png" alt="">/s
+                                            </p>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="upgrade__card upgrade__card--caserne">
+                                    <p class="upgrade__card__title">Caserne</p>
+                                    <img class="upgrade__card__img" src="./assets/img/caserne.png" alt="">
+
+                                    <button class="btn upgrade__card__purchase disabled" role="button">
+                                        <span class="btn-shadow"></span>
+                                        <span class="btn-edge"></span>
+                                        <span class="btn-front">
+                                            <span class="btn__txt">
+                                                Prod : <span class="upgrade__card__data"></span>
+                                                <img class="upgrade__card__picto upgrade__card__picto--hardlow" src="./assets/img/warrior.png" alt="">/s
+                                            </span>
+                                            <span class="btn__txt btn__txt--hovered"><span class="upgrade__card__price"></span> <img class="upgrade__card__picto"  src="./assets/img/science.png" alt=""></span>
+                                        </span>
+                                    </button>
+
+                                    <div class="info">
+                                        <span class="info__head">i</span>
+        
+                                        <div class="info__content">
+                                            <p class="info__txt info__txt--minigap">
+                                                Prod :
+                                                <span class="upgrade__card__old"></span>
+                                                <img class="upgrade__card__picto" src="./assets/img/warrior.png" alt="">/s
+                                                ⇒
+                                                <span class="upgrade__card__new"></span>
+                                                <img class="upgrade__card__picto" src="./assets/img/warrior.png" alt="">/s
+                                            </p>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="upgrade__card upgrade__card--ship upgrade__card--shipB upgrade__card--shipW">
+                                    <p class="upgrade__card__title">Ship</p>
+                                    <img class="upgrade__card__img" src="./assets/img/ship.png" alt="">
+
+                                    <button class="btn upgrade__card__purchase disabled" role="button">
+                                        <span class="btn-shadow"></span>
+                                        <span class="btn-edge"></span>
+                                        <span class="btn-front">
+                                            <span class="btn__txt">
+                                                Durée : <span class="upgrade__card__data"></span>s
+                                            </span>
+                                            <span class="btn__txt btn__txt--hovered"><span class="upgrade__card__price"></span> <img class="upgrade__card__picto"  src="./assets/img/science.png" alt=""></span>
+                                        </span>
+                                    </button>
+                                    <button class="btn upgrade__card__purchase--2 disabled" role="button">
+                                        <span class="btn-shadow"></span>
+                                        <span class="btn-edge"></span>
+                                        <span class="btn-front">
+                                            <span class="btn__txt">
+                                                Capacité :
+                                                <span class="upgrade__card__data--2"></span>
+                                                <img class="upgrade__card__picto upgrade__card__picto--hardlow" src="./assets/img/warrior.png" alt="">/<img class="upgrade__card__picto upgrade__card__picto--hardlow" src="./assets/img/bishop.png" alt="">
+                                            </span>
+                                            <span class="btn__txt btn__txt--hovered"><span class="upgrade__card__price--2"></span> <img class="upgrade__card__picto"  src="./assets/img/science.png" alt=""></span>
+                                        </span>
+                                    </button>
+
+                                    <div class="info">
+                                        <span class="info__head">i</span>
+        
+                                        <div class="info__content">
+                                            <p class="info__txt info__txt--minigap">
+                                                <span class="btn__txt">
+                                                    Durée :
+                                                    <span class="upgrade__card__old"></span>s
+                                                    ⇒
+                                                    <span class="upgrade__card__new"></span>s
+                                                </span>
+                                            </p>
+                                            <p class="info__txt info__txt--minigap">
+                                                Capacité :
+                                                <span class="upgrade__card__old--2"></span>
+                                                <span class="info__img"><img src="./assets/img/warrior.png" alt=""></span>/<span class="info__img"><img src="./assets/img/bishop.png" alt=""></span>
+                                                ⇒
+                                                <span class="upgrade__card__new--2"></span>
+                                                <span class="info__img"><img src="./assets/img/warrior.png" alt=""></span>/<span class="info__img"><img src="./assets/img/bishop.png" alt=""></span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="upgrade__card upgrade__card--dock">
+                                    <p class="upgrade__card__title">Dock</p>
+                                    <img class="upgrade__card__img" src="./assets/img/dock.png" alt="">
+
+                                    <button class="btn upgrade__card__purchase disabled" role="button">
+                                        <span class="btn-shadow"></span>
+                                        <span class="btn-edge"></span>
+                                        <span class="btn-front">
+                                            <span class="btn__txt">
+                                                Prod : <span class="upgrade__card__data"></span>
+                                                <img class="upgrade__card__picto upgrade__card__picto--hardlow" src="./assets/img/ship.png" alt="">/s
+                                            </span>
+                                            <span class="btn__txt btn__txt--hovered"><span class="upgrade__card__price"></span> <img class="upgrade__card__picto"  src="./assets/img/science.png" alt=""></span>
+                                        </span>
+                                    </button>
+
+                                    <div class="info">
+                                        <span class="info__head">i</span>
+        
+                                        <div class="info__content">
+                                            <p class="info__txt info__txt--minigap">
+                                                Prod :
+                                                <span class="upgrade__card__old"></span>
+                                                <img class="upgrade__card__picto" src="./assets/img/ship.png" alt="">/s
+                                                ⇒
+                                                <span class="upgrade__card__new"></span>
+                                                <img class="upgrade__card__picto" src="./assets/img/ship.png" alt="">/s
+                                            </p>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="upgrade__card upgrade__card--hangar">
+                                    <p class="upgrade__card__title">Hangar</p>
+                                    <img class="upgrade__card__img" src="./assets/img/hangar.png" alt="">
+
+                                    <button class="btn upgrade__card__purchase disabled" role="button">
+                                        <span class="btn-shadow"></span>
+                                        <span class="btn-edge"></span>
+                                        <span class="btn-front">
+                                            <span class="btn__txt">
+                                                Espace : <span class="upgrade__card__data"></span>
+                                                <img class="upgrade__card__picto" src="./assets/img/ship.png" alt=""> max
+                                            </span>
+                                            <span class="btn__txt btn__txt--hovered"><span class="upgrade__card__price"></span> <img class="upgrade__card__picto"  src="./assets/img/science.png" alt=""></span>
+                                        </span>
+                                    </button>
+
+                                    <div class="info">
+                                        <span class="info__head">i</span>
+        
+                                        <div class="info__content">
+                                            <p class="info__txt info__txt--minigap">
+                                                <span class="btn__txt">
+                                                    Espace :
+                                                    <span class="upgrade__card__old"></span>
+                                                    <img class="upgrade__card__picto" src="./assets/img/ship.png" alt=""> max
+                                                    ⇒
+                                                    <span class="upgrade__card__new"></span>
+                                                    <img class="upgrade__card__picto" src="./assets/img/ship.png" alt=""> max
+                                                </span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </ul>
+                <ul class="interact-list interact-list--quantique hide">
+                    <li class="interact-list__ele" data-level="6">
+                        <article class="card">
+                            <p class="card__desc">
+                                Les planètes possèdent une énergie <br>
+                                quantique (<img src="./assets/img/energy.png">) qui leur est propre. <br>
+                                Vous pouvez extraire 10 <img src="./assets/img/energy.png"> d'une planète.<br>
+                                <br>
+                                Récoltez assez <img src="./assets/img/energy.png"> grace aux extracteurs <br>
+                                pour créer une faille dimensionnelle
+                            </p>
+                        </article>
+                    </li>
+                    <li class="interact-list__ele" data-level="6">
+                        <article class="card card--extractor">
+                            <p class="card__title">
+                                Extracteur d'énergie <br>
+                                quantique
+                            </p>
+                            <img class="card__img" src="./assets/img/extractor.png" alt="">
+
+                            <button class="btn card__purchase disabled" role="button">
+                                <span class="btn-shadow"></span>
+                                <span class="btn-edge"></span>
+                                <span class="btn-front">
+                                    <span class="btn__txt">Acheter</span>
+                                    <span class="btn__txt btn__txt--hovered card__price"></span>
+                                </span>
+                            </button>
+
+                            <div class="info">
+                                <span class="info__head">i</span>
+
+                                <div class="info__content">
+                                    <p class="info__txt">Extracteurs : <span class="card__nb"></span></p>
+                                    <p class="info__txt">Prod/Extracteur : <span class="card__prod1"></span></p>
+                                    <p class="info__txt">Prod total : <span class="card__prod"></span></p>
+                                </div>
+                            </div>
+                        </article>
+                    </li>
+                    <li class="interact-list__ele" data-level="6">
+                        <article class="card card--faille">
+                            <p class="card__title">
+                                Faille dimensionnelle
+                            </p>
+                            <img class="card__img" src="./assets/img/faille.png" alt="">
+
+                            <button class="btn card__purchase disabled" role="button">
+                                <span class="btn-shadow"></span>
+                                <span class="btn-edge"></span>
+                                <span class="btn-front">
+                                    <span class="btn__txt">Créer</span>
+                                    <span class="btn__txt btn__txt--hovered card__price"></span>
+                                </span>
+                            </button>
+
+                            <div class="info">
+                                <span class="info__head">i</span>
+
+                                <div class="info__content">
+                                    <p class="info__txt">𑜈𑜣𑜔𑜦𑜑𑜫 𑜒𑜆𑜣 𑜼 𑜒𑜏𑜫</p>
+                                    <p class="info__txt">𑜈𑜣𑜔𑜦𑜑𑜫 𑜒𑜆𑜣 𑜼 𑜒𑜏𑜫</p>
+                                    <p class="info__txt">𑜒𑜦𑜧𑜄𑜡 𑜓𑜞𑜤𑜕𑜫𑜘𑜦𑜧𑜓𑜪</p>
+                                    <p class="info__txt hide"><span class="faille__nb"></span></p>
+                                </div>
+                            </div>
+                        </article>
+                    </li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <div class="multiplicator hide">
+        <div class="multiplicator__content">
+            <p class="multiplicator__title">Multiplicateur d'achat :</p>
+
+            <div class="multiplicator__group">
+                <div class="field">
+                    <input class="field__input" value="1" type="radio" name="multiplicator" id="multiplicator-1" checked>
+                    <label class="field__label" for="multiplicator-1">*1</label>
+                </div>
+                <div class="field">
+                    <input class="field__input" value="10" type="radio" name="multiplicator" id="multiplicator-10">
+                    <label class="field__label" for="multiplicator-10">*10</label>
+                </div>
+                <div class="field">
+                    <input class="field__input" value="100" type="radio" name="multiplicator" id="multiplicator-100">
+                    <label class="field__label" for="multiplicator-100">*100</label>
+                </div>
+                <div class="field">
+                    <input class="field__input" value="1000" type="radio" name="multiplicator" id="multiplicator-1000">
+                    <label class="field__label" for="multiplicator-1000">*1.000</label>
+                </div>
+                <div class="field">
+                    <input class="field__input" value="100000" type="radio" name="multiplicator" id="multiplicator-100000">
+                    <label class="field__label" for="multiplicator-100000">*100.000</label>
+                </div>
+                <div class="field">
+                    <input class="field__input" value="1000000" type="radio" name="multiplicator" id="multiplicator-1000000">
+                    <label class="field__label" for="multiplicator-1000000">*1.000.000</label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="market" data-level="1">
+        <div class="market__head">
+            <img class="market__icon" src="./assets/img/exchange.png" alt="">
+        </div>
+        <div class="market__content">
+            <p class="market__title">
+                Cours du bois :
+                <span class="market__price">0$</span> / <img class="market__icon" src="./assets/img/wood.png" alt="">
+            </p>
+            <canvas class="market__chart" id="myChart"></canvas>
+            <button class="btn market__sell disabled" role="button">
+                <span class="btn-shadow"></span>
+                <span class="btn-edge"></span>
+                <span class="btn-front">
+                    Vendre
+                    (+<span class="market__sell--expectedPrice"></span>
+                    <img class="market__gold" src="./assets/img/money.png" alt="">)
+                </span>
+            </button>
+        </div>
+    </div>
+
+    <div class="fire" data-level="3">
+        <p class="fire__title">Zone de lancement</p>
+
+        <button class="btn fire__sonde disabled" role="button">
+            <span class="btn-shadow"></span>
+            <span class="btn-edge"></span>
+            <span class="btn-front">
+                Lancer les Sondes <span class="sonde__cd"></span>
+            </span>
+        </button>
+
+        <button class="btn fire__ship disabled" role="button" data-level="4">
+            <span class="btn-shadow"></span>
+            <span class="btn-edge"></span>
+            <span class="btn-front">
+                Lancer les Ships <span class="ship__cd"></span>
+            </span>
+        </button>
+    </div>
+
+    <div class="end hide">
+        <p class="end__start"></p>
+        <canvas class="end__canvas" id="hyperspace"></canvas>
+    </div>
+
+    <div class="info info--binds" data-level="1">
+        <span class="info__head">Raccourcis</span>
+
+        <div class="info__content">
+            <p class="info__txt">Vendre : S</p>
+            <p class="info__txt">Multiplicateur : P</p>
+            <p class="info__txt" data-level="3">Lancer les Sondes : C</p>
+            <p class="info__txt" data-level="4">Lancer les Ships : V</p>
+            <p class="info__txt" data-level="3">Menu Ressources : 1</p>
+            <p class="info__txt" data-level="3">Menu Exploration : 2</p>
+            <p class="info__txt" data-level="4">Menu Colonisation : 3</p>
+            <p class="info__txt" data-level="5">Menu Conseil : 4</p>
+            <p class="info__txt" data-level="6">Menu Quantique : 5</p>
+        </div>
+    </div>
+
+    <div class="readme hide">
+        <img class="readme__img" src="./assets/img/redme.png" alt="">
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"></script>
+    <script defer type="text/javascript" src="./assets/js/exploration.js"></script>
+    <script defer type="text/javascript" src="./assets/js/colonisation.js"></script>
+    <script defer type="text/javascript" src="./assets/js/end.js"></script>
+    <script defer type="text/javascript" src="./assets/js/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</body>
+</html>
